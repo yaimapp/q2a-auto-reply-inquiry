@@ -8,7 +8,7 @@ class qa_auto_reply_inquiry
 	function process_event($event, $userid, $handle, $cookieid, $params)
 	{
 		if ($event === 'feedback') {
-			if (isset($params['email'])) {
+			if (!empty($params['email'])) {
 				$ipaddress = qa_remote_ip_address();
 				$autoreply = new ari_send_mail($params, $ipaddress);
 				$autoreply->send();
